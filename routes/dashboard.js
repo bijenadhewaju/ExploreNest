@@ -6,4 +6,6 @@ const show = require("./routes/admin.js");
 router.get("/",function(req,res){
     res.render("show", { title: "Trek Guide title", bookList: books})
 });
+
+
 module.exports = router;

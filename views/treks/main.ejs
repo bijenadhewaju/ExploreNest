@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Activities Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .activity-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .activity {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 300px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .activity h3 {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .activity p {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="activity-container">
+
+        <%trekList.forEach(function(trek){%>
+            <!-- Activity 1 -->
+            <div class="activity">
+                <img src="images/mardi.jpg" alt="mardi">
+                <h3>
+                    <%=trek.trackName%>
+                </h3>
+                <p>
+                    <%=trek.description%>
+                </p>
+                <button class="btn btn-primary text-white">
+                    <a href="/treks/edit/<%=trek._id%>" class="text-white">Edit</a>
+                </button>
+                <button class="btn btn-danger">
+                    <a href="/treks/delete/<%=trek._id%>" class="text-white">Delete</a>
+                </button>
+            </div>
+           
+            <%})%>
+
+
+
+                <!-- Activity 2 -->
+                <div class="activity">
+                    <img src="images/bungee.jpg" alt="Bungee">
+                    <h3>Bungee</h3>
+                    <p>Bungee jumping , also spelled bungy jumping, is an activity that involves a person jumping from a
+                        great height while connected to a large elastic cord.
+                    </p>
+                    </p>
+                </div>
+
+                <!-- Activity 3 -->
+                <div class="activity">
+                    <img src="images/zipline.jpg" alt="Zipline">
+                    <h3>Zipline</h3>
+                    <p>Zip lining is an action-filled recreational activity that involves riding a steel cable on a
+                        protective seat or a belt between two points and generally on a valley that exhibits spectacular
+                        sceneries..</p>
+                </div>
+
+                <!-- Activity 4 -->
+                <div class="activity">
+                    <img src="images/images.jpg" alt="Rafting">
+                    <h3>Rafting</h3>
+                    <p>Rafting in Pokhara involves navigating inflatable rafts through the waters of the Seti River.
+                        It's a popular activity for both experienced rafters and beginners.</p>
+                </div>
+    </div>
+
+</body>
+
+</html>

@@ -9,6 +9,10 @@ const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require("./routes/admin.js");
+var activitiesRouter = require("./routes/activities.js");
+var signinRouter=require("./routes/signin.js");
+var trekRoutes = require("./routes/treks.js");
+
 
 mongoose.connect('mongodb+srv://bhumikaojha01:BHUMIKA.MONGODB@cluster0.yzxirzy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 .then(()=> console.log("Connected"))
@@ -29,7 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin',adminRouter);
-
+app.use('/activities',activitiesRouter);
+app.use('/signin',signinRouter);
+app.use('/trek', trekRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

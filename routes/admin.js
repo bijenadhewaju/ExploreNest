@@ -1,14 +1,14 @@
 var express = require("express");
 var router = express.Router()
 const trek = require("../models/trek.js");
-var trekking = require("../resources/trekkk.js")
+var trekking = require("../models/trek")
 
 
 router.get("/",function(req,res){
-    res.render("book", { title: "Trek App title", bookList: trekking})
+    res.render("trek", { title: "Trek App title", trekList: trekking})
 });
 router.get("/add",function(req,res){
-    res.render("addtrek",{title: "Add Trek"}) //render view
+    res.render("admin/addtrek",{title: "Add Trek"}) //render view
 });
 router.post("/save", async function(req,res,next){
     try{const tour = await trek.create(req.body)

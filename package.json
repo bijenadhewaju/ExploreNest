@@ -18,5 +18,17 @@
     "mongoose": "^8.15.0",
     "morgan": "~1.9.1",
     "nodemon": "^3.1.10"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bijenadhewaju/ExploreNest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bijenadhewaju/ExploreNest/issues"
+  },
+  "homepage": "https://github.com/bijenadhewaju/ExploreNest#readme",
+  "description": ""
 }

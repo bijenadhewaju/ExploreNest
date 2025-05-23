@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Trek</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 40px;
+    color: #333;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+  }
+
+  form {
+    max-width: 700px;
+    margin: auto;
+    background: #fff;
+    padding: 25px 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  button[type="submit"],
+  button[type="button"] {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 15px;
+  }
+
+  button[type="button"] {
+    background: #3498db;
+    margin-bottom: 10px;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+
+  .itinerary-day {
+    border: 1px dashed #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background: #fdfdfd;
+  }
+</style>
+
+</head>
+<body>
+  <h1>Create a New Trek</h1>
+
+  <form action="/admin/saveAdd" method="POST" >
+    <label for="name">Trek Name:</label>
+    <input type="text" name="trackName"  required><br>
+
+    <label for="location">Location:</label>
+    <input type="text" name="location" required><br>
+
+    <label for="duration">Duration:</label>
+    <input type="text" name="duration" required><br>
+
+    <label for="difficulty">Difficulty:</label>
+    <select name="difficulty" required>
+      <option value="Easy">Easy</option>
+      <option value="Moderate">Moderate</option>
+      <option value="Hard">Hard</option>
+          </select><br>
+
+    <label for="description"> Description:</label>
+    <input type="text" name="description" required><br>
+
+
+    <h3>Itinerary</h3>
+    <div id="itinerary-wrapper">
+      <div class="itinerary-day">
+        <label>Day 1 Title:</label>
+        <input type="text" name="itinerary[0][title]" required><br>
+        <label>Day 1 Description:</label>
+        <textarea name="itinerary[0][description]" required></textarea><br>
+      </div>
+    </div>
+
+    <button type="button" onclick="addDay()">Add Another Day</button><br><br>
+
+    <label for="photos">Upload Trek Photos:</label>
+    <input type="file" name="photos" multiple><br><br>
+
+    <button type="submit">Create Trek</button>
+  </form>
+
+  <script>
+    let dayCount = 1;
+    function addDay() {
+      const wrapper = document.getElementById('itinerary-wrapper');
+      const newDay = document.createElement('div');
+      newDay.classList.add('itinerary-day');
+      newDay.innerHTML = `
+        <label>Day ${dayCount + 1} Title:</label>
+        <input type="text" name="itinerary[${dayCount}][title]" required><br>
+        <label>Day ${dayCount + 1} Description:</label>
+        <textarea name="itinerary[${dayCount}][description]" required></textarea><br>
+      `;
+      wrapper.appendChild(newDay);
+      dayCount++;
+    }
+  </script>
+</body>
+</html>
