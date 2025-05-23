@@ -4,15 +4,14 @@ const itinerarySchema = new mongoose.Schema(
   {
     day: {
       type: Number,
-      required: true,
+      required: false,
     },
     title: {
       type: String,
-      required: true,
+      required: false,
     },
     description: String,
   },
-  { _id: false }
 );
 
 const trekSchema = mongoose.Schema(
@@ -36,18 +35,18 @@ const trekSchema = mongoose.Schema(
     },
     duration: {
       type: String,
-      required: true,
+      required: false,
     },
     images: [
       {
         type: String,
-        required: true,
+        required: false,
       },
     ],
     itinerary: [itinerarySchema]
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 const Trek = mongoose.model("Trek", trekSchema);
