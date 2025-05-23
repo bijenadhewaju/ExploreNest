@@ -17,36 +17,30 @@
      <h1 class="text-center">
         <%= title %>
     </h1>
-    <h2 class="text-muted text-center">It's Admin Page /h2>
+    <h2 class="text-muted text-center">It's Admin Page </h2>
 
     <div class="row">
 
-        <%trekList.forEach(function(book){%>
-            <div class="card shadow-sm rounded" style="width: 20rem; margin: 8px; border-radius: 20px;">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <%=book.title%>
-                    </h5>
-                    <h6 class="card-subtitle mb-2 text-muted"></h6>
-                    <p class="card-text">
-                        <%=book.description%>
-                    </p>
-                    <h6 class="card-subtitle mb-2 text-muted">Genre:<%=book.genre%>
-                    </h6>
-                    <button class="btn btn-primary text-white">
-                        <a href="/book/edit/<%=book._id%>" class="text-white">Edit</a>
-                    </button>
-                    <button class="btn btn-danger">
-                        <a href="/book/delete/<%=book._id%>" class="text-white">Delete</a>
-                    </button>
-                    
-                </div>
-            </div>
-            <%})%>
+        <%trekList.forEach(function(trek){%>
+            <div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
-    <a class="btn btn-primary" href="/book/add">Add Books</a>
-</body>
+  </div>
+</div>
+  <% }); %>
+    </div>
 
-</html>
 </body>
 </html>

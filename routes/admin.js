@@ -5,7 +5,7 @@ var trekking = require("../resources/trekkk.js")
 
 
 router.get("/",function(req,res){
-    res.render("book", { title: "Trek App title", bookList: trekking})
+    res.render("admin", { title: "Admin Page", trekList: trekking})
 });
 router.get("/add",function(req,res){
     res.render("addtrek",{title: "Add Trek"}) //render view
@@ -13,7 +13,7 @@ router.get("/add",function(req,res){
 router.post("/save", async function(req,res,next){
     try{const tour = await trek.create(req.body)
         
-   return res.status(200).redirect("/trek")
+   return res.status(200).redirect("/admin")
     } catch(error){
         res.status(500).json({message: error.message})
     }
@@ -36,7 +36,7 @@ router.post('/saveEdited/:_id', async function(req, res, next){
   if (!book) {
     return res.status(404).json({message: "Error updating book"})
   }
-  res.redirect('/trek')
+  res.redirect('/admin')
  })
 
 router.get('/delete/:id', function(req, res, next){
@@ -45,7 +45,7 @@ router.get('/delete/:id', function(req, res, next){
     const currIndex= trek.findIndex(book=> req.params._id=== book._id)
     books.splice(currIndex, 1);
     // Redirect to the homepage or send a success message
-    res.redirect('/trek'); // Redirect to the homepage
+    res.redirect('/admin'); // Redirect to the homepage
 });
 
 

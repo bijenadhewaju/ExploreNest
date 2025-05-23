@@ -9,12 +9,13 @@ const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require("./routes/admin.js");
+var dashRouter = require("")
 
 mongoose.connect('mongodb+srv://bhumikaojha01:BHUMIKA.MONGODB@cluster0.yzxirzy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 .then(()=> console.log("Connected"))
 .catch((err)=> console.error("Error connecting",err))
 var app = express();
-
+    
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

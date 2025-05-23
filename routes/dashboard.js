@@ -1,9 +1,12 @@
 var express = require("express");
 var router = express.Router()
 const trek = require("../models/trek.js");
-const show = require("./routes/admin.js");
 
 router.get("/",function(req,res){
-    res.render("show", { title: "Trek Guide title", bookList: books})
+    res.render("./dashboard/index.js", { title: "User Page", completedList: trekking})
+});
+
+router.get("/",function(req,res){
+    res.render("admin", { title: "Admin Page", whistList: trekking})
 });
 module.exports = router;
