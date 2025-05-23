@@ -50,4 +50,5 @@ const trekSchema = mongoose.Schema(
   }
 );
 const Trek = mongoose.model("Trek", trekSchema);
-module.exports =Trek;
+
+module.exports = Trek;
