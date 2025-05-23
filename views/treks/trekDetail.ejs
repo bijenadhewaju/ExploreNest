@@ -1,95 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Annapurna Base Camp & Mardi Himal Trek</title>
-  <!-- Bootstrap CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap @5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= trek.trackName %> | Pokhara Adventures</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    .info-label {
-      font-weight: bold;
-      color: #00574b;
+    :root {
+      --primary-color: #1b5885;
+      --secondary-color: #14446b;
+      --accent-color: #ff6b35;
+      --light-bg: #f8f9fa;
+      --dark-text: #212529;
     }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 0.5rem 0;
+    }
+    
+    .navbar-brand img {
+      height: 80px;
+      object-fit: contain;
+      transition: transform 0.3s;
+    }
+    
+    .navbar-brand img:hover {
+      transform: scale(1.05);
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .nav-link:hover {
+      background-color: rgba(27, 88, 133, 0.1);
+      color: var(--primary-color);
+    }
+    
+    .trek-hero {
+      position: relative;
+      height: 70vh;
+      overflow: hidden;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    
+    .trek-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7);
+    }
+    
+    .hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+    }
+    
+    .trek-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+    
+    .difficulty-badge {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+    
+    .difficulty-easy {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    
+    .difficulty-medium {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    
+    .difficulty-hard {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    
+    .info-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      transition: transform 0.3s;
+      border: none;
+    }
+    
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .info-icon {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-right: 10px;
+    }
+    
+    .section-title {
+      position: relative;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-color);
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    }
+    
     .itinerary-day {
-      border-left: 4px solid #00574b;
-      padding-left: 1rem;
-      margin-bottom: 1rem;
+      border-left: 3px solid var(--primary-color);
+      padding-left: 20px;
+      margin-bottom: 25px;
+      position: relative;
     }
-    .day-title {
-      color: #003d34;
+    
+    .day-number {
+      position: absolute;
+      left: -15px;
+      top: -5px;
+      background: var(--primary-color);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: all 0.3s;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(27, 88, 133, 0.1), rgba(20, 68, 107, 0.1));
+      border-radius: 10px;
+      padding: 20px;
+      margin: 30px 0;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .btn-book {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      padding: 12px 30px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      border-radius: 50px;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(27, 88, 133, 0.3);
+      color: white;
+    }
+    
+    .btn-book:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(27, 88, 133, 0.4);
+      color: white;
+    }
+    
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .feature-list li {
+      padding: 10px 0;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .feature-list i {
+      color: var(--primary-color);
+      margin-right: 10px;
+    }
+    
+    .footer {
+      background: linear-gradient(135deg, #1b5885 0%, #14446b 100%);
+      color: white;
+      padding: 3rem 0 1rem;
+      margin-top: auto;
+    }
+    
+    .footer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer a:hover {
+      color: white;
+      text-decoration: none;
+    }
+    
+    .footer-title {
+      position: relative;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--accent-color);
+    }
+    
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s;
+    }
+    
+    .social-icons a:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-3px);
+    }
+    
+    @media (max-width: 768px) {
+      .trek-title {
+        font-size: 2.2rem;
+      }
+      
+      .trek-hero {
+        height: 50vh;
+      }
+      
+      .hero-content {
+        padding: 20px;
+      }
+      
+      .navbar-brand img {
+        height: 60px;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="container py-5">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="images/logo.png" alt="" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/activities">Activities</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/trek">Trek Routes</a></li>
+          <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-2" href="/signin">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <!-- Trek Title -->
-  <h1 class="mb-4 text-primary">Annapurna Base Camp & Mardi Himal Trek</h1>
-
-  <!-- Info Grid -->
-  <div class="row g-3 mb-4">
-    <div class="col-md-3">
-      <div class="info-label">Duration:</div>
-      <div class="info-value">10 Days</div>
-    </div>
-    <div class="col-md-3">
-      <div class="info-label">Location:</div>
-      <div class="info-value">Annapurna Region, Nepal</div>
-    </div>
-    <div class="col-md-3">
-      <div class="info-label">Difficulty:</div>
-      <div class="info-value">Moderate</div>
-    </div>
-    <div class="col-md-3">
-      <div class="info-label">Starts / Ends:</div>
-      <div class="info-value">Pokhara / Pokhara</div>
-    </div>
-    <div class="col-md-3">
-      <div class="info-label">Meals:</div>
-      <div class="info-value">Breakfast, Lunch, Dinner</div>
-    </div>
-    <div class="col-md-3">
-      <div class="info-label">Accommodation:</div>
-      <div class="info-value">Teahouse Lodges</div>
-    </div>
-    <div class="col-md-6">
-      <div class="info-label">Best Time:</div>
-      <div class="info-value">Spring (March-May), Autumn (September-November)</div>
+  <!-- Hero Section -->
+  <div class="trek-hero">
+    <% if (trek.images && trek.images.length > 0) { %>
+      <img src="/uploads/<%= trek.images[0] %>" alt="<%= trek.trackName %>">
+    <% } else { %>
+      <img src="/images/default-trek.jpg" alt="Default trek image">
+    <% } %>
+    <div class="hero-content">
+      <h1 class="trek-title"><%= trek.trackName %></h1>
+      <div class="d-flex align-items-center mb-3">
+        <span class="difficulty-badge difficulty-<%= trek.difficulty.toLowerCase() %> me-3">
+          <%= trek.difficulty %>
+        </span>
+        <span class="text-white"><i class="fas fa-map-marker-alt me-2"></i> <%= trek.location %></span>
+      </div>
+      <p class="lead"><%= trek.description %></p>
     </div>
   </div>
 
-  <!-- Short Description -->
-  <div class="mb-5">
-    <h3>Description</h3>
-    <p>This is a breathtaking trek combining two iconic destinations – Annapurna Base Camp and Mardi Himal. The trail passes through lush rhododendron forests, traditional Gurung villages, and offers stunning views of the Annapurna and Machhapuchhre peaks.</p>
+  <div class="container">
+    <!-- Overview Section -->
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="info-card">
+          <h2 class="section-title">Trek Overview</h2>
+          
+          <div class="highlight-box">
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-clock info-icon"></i>
+                  <div>
+                    <h5 class="mb-1">Duration</h5>
+                    <p class="mb-0 text-muted"><%= trek.duration %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-mountain info-icon"></i>
+                  <div>
+                    <h5 class="mb-1">Difficulty</h5>
+                    <p class="mb-0 text-muted"><%= trek.difficulty %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-map-marked-alt info-icon"></i>
+                  <div>
+                    <h5 class="mb-1">Location</h5>
+                    <p class="mb-0 text-muted"><%= trek.location %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-calendar-alt info-icon"></i>
+                  <div>
+                    <h5 class="mb-1">Best Season</h5>
+                    <p class="mb-0 text-muted">All</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <h4>Experience Highlights</h4>
+          <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Authentic cultural experiences with local communities</li>
+            <li><i class="fas fa-check-circle"></i> Diverse landscapes from lush forests to high mountain passes</li>
+            <li><i class="fas fa-check-circle"></i> Comfortable teahouse accommodations along the route</li>
+          </ul>
+          
+          
+        </div>
+
+        <!-- Detailed Description -->
+        <div class="info-card">
+          <h2 class="section-title">Detailed Description</h2>
+          <p><%= trek.description %></p>
+          
+          <h4 class="mt-4">What Makes This Trek Special</h4>
+          <p>The <%= trek.trackName %> offers an unparalleled opportunity to immerse yourself in the natural beauty of the Himalayas. This carefully curated route takes you through picturesque villages, across suspension bridges draped with prayer flags, and to viewpoints that will leave you breathless.</p>
+          
+          <p>Each day brings new landscapes and cultural encounters, from the terraced fields of the lower valleys to the rugged high-altitude terrain closer to the mountains. Our expert guides will share their knowledge of the local flora, fauna, and customs, enriching your experience at every turn.</p>
+        </div>
+
+        <!-- Itinerary Section -->
+        <div class="info-card">
+          <h2 class="section-title">Daily Itinerary</h2>
+          <% if (trek.itinerary && trek.itinerary.length > 0) { %>
+            <% trek.itinerary.forEach(function(day, index){ %>
+              <div class="itinerary-day">
+                <div class="day-number"><%= index + 1 %></div>
+                <h4><%= day.title || 'Day ' + (index + 1) %></h4>
+                <p><%= day.description || 'No description available for this day.' %></p>
+                <% if (day.highlights) { %>
+                  <div class="mt-3">
+                    <h6>Highlights:</h6>
+                    <ul>
+                      <% day.highlights.forEach(function(highlight){ %>
+                        <li><%= highlight %></li>
+                      <% }) %>
+                    </ul>
+                  </div>
+                <% } %>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p>No itinerary details available for this trek.</p>
+          <% } %>
+        </div>
+
+        <!-- Gallery Section -->
+        <% if (trek.images && trek.images.length > 1) { %>
+          <div class="info-card">
+            <h2 class="section-title">Photo Gallery</h2>
+            <p>Explore visuals from the <%= trek.trackName %> to get a glimpse of what awaits you.</p>
+            <div class="gallery">
+              <% trek.images.slice(1).forEach(function(image){ %>
+                <img src="/uploads/<%= image %>" alt="Trek photo">
+              <% }) %>
+            </div>
+          </div>
+        <% } %>
+
+        <!-- Essential Info -->
+        <div class="info-card">
+          <h2 class="section-title">Essential Information</h2>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <h4><i class="fas fa-hiking me-2"></i> What to Bring</h4>
+              <ul>
+                <li>Sturdy hiking boots</li>
+                <li>Layered clothing for variable temperatures</li>
+                <li>Waterproof jacket</li>
+                <li>Daypack with water bladder</li>
+                <li>Sun protection (hat, sunglasses, sunscreen)</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h4><i class="fas fa-info-circle me-2"></i> Good to Know</h4>
+              <ul>
+                <li>Average walking time: 5-6 hours per day</li>
+                <li>Maximum altitude: 3,210m</li>
+                <li>Accommodation: Teahouses/Lodges</li>
+                <li>Meals: Included (breakfast, lunch, dinner)</li>
+                <li>Group size: 4-12 people</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="text-center mt-4">
+           
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Itinerary -->
-  <div class="mb-5">
-    <h3>Itinerary</h3>
-
-    <!-- Day 1 -->
-    <div class="itinerary-day mb-3 p-3 bg-light rounded shadow-sm">
-      <div class="day-title fw-bold">Day 01: Drive from Pokhara to Kimche | Trek to Ghandruk</div>
-      <p class="day-desc m-0">
-        You begin the ABC and Mardi Himal trek from Pokhara. Depart to Kimche early in the morning in a private taxi taking a scenic 1.5-hour route along the Baglung Highway. You will make your way through villages like Nayapul – the gateway to Annapurna, Birethanti, and Syauli Bazar before finally reaching Kimche.
-      </p>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h4 class="footer-title">Explore Nest</h4>
+          <p>
+            Promoting the natural beauty and cultural heritage of Pokhara, Nepal's premier tourism destination.
+          </p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-4">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="/">Home</a></li>
+            <li class="mb-2"><a href="/">About Pokhara</a></li>
+            <li class="mb-2"><a href="/activities">Activities</a></li>
+            <li class="mb-2"><a href="/trek">Trek Routes</a></li>
+            <li class="mb-2"><a href="/">Gallery</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 col-md-4">
+          <ul class="list-unstyled">
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 col-md-4">
+          <h4 class="footer-title">Contact Us</h4>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Lakeside, Pokhara, Nepal</li>
+            <li class="mb-2"><i class="fas fa-phone me-2"></i> +977 00000000</li>
+            <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@explorenest.com</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5 pt-4 border-top">
+        <p class="mb-0">
+          &copy; <script>document.write(new Date().getFullYear())</script> Explore Nest All rights reserved.
+          <a href="/privacy" class="ms-2">Privacy Policy</a> | 
+          <a href="/terms" class="ms-2">Terms of Service</a>
+        </p>
+      </div>
     </div>
+  </footer>
 
-    <!-- Day 2 -->
-    <div class="itinerary-day mb-3 p-3 bg-light rounded shadow-sm">
-      <div class="day-title fw-bold">Day 02: Trek from Ghandruk to Landruk</div>
-      <p class="day-desc m-0">
-        Today's walk begins after breakfast, passing through beautiful terraced fields and small Gurung villages. You will reach Landruk by lunchtime and enjoy panoramic mountain views including Machhapuchhre (Fishtail).
-      </p>
-    </div>
-
-    <!-- Add more days similarly -->
-  </div>
-
-</div>
-
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script>
+    // Simple gallery lightbox functionality
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', function() {
+        const lightbox = document.createElement('div');
+        lightbox.style.position = 'fixed';
+        lightbox.style.top = '0';
+        lightbox.style.left = '0';
+        lightbox.style.width = '100%';
+        lightbox.style.height = '100%';
+        lightbox.style.backgroundColor = 'rgba(0,0,0,0.9)';
+        lightbox.style.display = 'flex';
+        lightbox.style.alignItems = 'center';
+        lightbox.style.justifyContent = 'center';
+        lightbox.style.zIndex = '1000';
+        
+        const lightboxImg = document.createElement('img');
+        lightboxImg.src = this.src;
+        lightboxImg.style.maxHeight = '90%';
+        lightboxImg.style.maxWidth = '90%';
+        lightboxImg.style.objectFit = 'contain';
+        
+        lightbox.appendChild(lightboxImg);
+        document.body.appendChild(lightbox);
+        
+        lightbox.addEventListener('click', function() {
+          document.body.removeChild(lightbox);
+        });
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
