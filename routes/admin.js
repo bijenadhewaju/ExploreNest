@@ -1,7 +1,8 @@
 var express = require("express");
 var router = express.Router();
 const trek = require("../models/trek.js");
-// var trekking = require("../resources/trek.js")
+
+var trekking = require("../models/trek")
 
 router.get("/", function (req, res) {
   res.render("book", { title: "Trek App title", bookList: trekking });
@@ -11,6 +12,13 @@ router.post("/saveAdd", async function (req, res) {
   const name = req.body.name;
   console.log("data ayo", req.body, data, name);
 
+
+router.get("/",function(req,res){
+    res.render("trek", { title: "Trek App title", trekList: trekking})
+});
+router.get("/add",function(req,res){
+    res.render("admin/addtrek",{title: "Add Trek"}) //render view
+
   try {
     const tour = await trek.create(req.body);
     console.log(tour)
@@ -18,10 +26,11 @@ router.post("/saveAdd", async function (req, res) {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-  //database logic
+
 });
 router.get("/add", function (req, res) {
   res.render("admin/addTrek", { title: "Add Trek" }); //render view
+
 });
 router.post("/save", async function (req, res, next) {
   try {
