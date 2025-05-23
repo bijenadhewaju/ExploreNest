@@ -11,12 +11,12 @@ router.post("/saveAdd", async function (req, res) {
   const data = req.body;
   const name = req.body.name;
   console.log("data ayo", req.body, data, name);
-
+});
 
 router.get("/",function(req,res){
     res.render("trek", { title: "Trek App title", trekList: trekking})
 });
-router.get("/add",function(req,res){
+router.get("/add",async function(req,res){
     res.render("admin/addtrek",{title: "Add Trek"}) //render view
 
   try {
