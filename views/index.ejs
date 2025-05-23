@@ -3,37 +3,244 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pokhara Tourism</title>
+  <title>Pokhara Tourism | Nepal's Premier Lakeside Destination</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
+    :root {
+      --primary-color: #1b5885;
+      --secondary-color: #14446b;
+      --accent-color: #ff6b35;
+      --light-bg: #f8f9fa;
+      --dark-text: #212529;
+    }
+    
     body {
       background-image: url('images/cream.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--dark-text);
     }
+    
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 0.5rem 0;
+    }
+    
+    .navbar-brand img {
+      height: 80px;
+      object-fit: contain;
+      transition: transform 0.3s;
+    }
+    
+    .navbar-brand img:hover {
+      transform: scale(1.05);
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .nav-link:hover {
+      background-color: rgba(27, 88, 133, 0.1);
+      color: var(--primary-color);
+    }
+    
     .carousel-inner {
       height: 80vh;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
+    
     .carousel-item img {
       object-fit: cover;
       height: 100%;
       width: 100%;
+      filter: brightness(0.8);
     }
-    .navbar-brand img {
-      height: 120px;
-      object-fit: contain;
+    
+    .carousel-caption {
+      bottom: 30%;
+      background-color: rgba(0,0,0,0.5);
+      border-radius: 1rem;
+      padding: 1.5rem;
+    }
+    
+    .carousel-caption h5 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .section-title {
+      position: relative;
+      margin-bottom: 3rem;
+      color: var(--primary-color);
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    }
+    
+    .about {
+      padding: 4rem 0;
+      background-color: rgba(255,255,255,0.9);
+      border-radius: 0.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin: 2rem auto;
+    }
+    
+    .card {
+      border: none;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 1.5rem;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .footer {
+      background: linear-gradient(135deg, #1b5885 0%, #14446b 100%);
+      color: white;
+      padding: 3rem 0 1rem;
+    }
+    
+    .footer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer a:hover {
+      color: white;
+      text-decoration: none;
+    }
+    
+    .footer-title {
+      position: relative;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--accent-color);
+    }
+    
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s;
+    }
+    
+    .social-icons a:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-3px);
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      font-size: 1.2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 999;
+    }
+    
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    @media (max-width: 768px) {
+      .carousel-inner {
+        height: 60vh;
+      }
+      
+      .carousel-caption h5 {
+        font-size: 1.5rem;
+      }
+      
+      .navbar-brand img {
+        height: 60px;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container-fluid d-flex align-items-center">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white ">
+    <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="images/logo.png" alt="Logo" />
+        <img src="images/logo.png" alt="Pokhara Tourism Logo" />
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,51 +248,57 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="/activities">Activities</a></li>
-          <li class="nav-item"><a class="nav-link" href="/trek">Trek Route</a></li>
-          <li class="nav-item"><a class="nav-link" href="/signin" onclick="popupbox('login-popup')">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="/trek">Trek Routes</a></li>
+          <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-2" href="/signin">Login</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Carousel -->
-  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <!-- Hero Carousel -->
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"
               aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"
               aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"
               aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="images/trek.jpg" class="d-block w-100" alt="Trek" />
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Explore the Trails</h5>
+        <img src="images/trek.jpg" class="d-block w-100" alt="Annapurna Trekking" />
+        <div class="carousel-caption text-center">
+          <h5>Explore the Himalayan Trails</h5>
+          <p class="d-none d-md-block">Discover breathtaking trekking routes in the Annapurna region</p>
+          <a href="/trek" class="btn btn-primary mt-3">View Trekking Routes</a>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="images/mahadev.jpg" class="d-block w-100" alt="Mahadev" />
-        <div class="carousel-caption d-none d-md-block">
+        <img src="images/mahadev.jpg" class="d-block w-100" alt="World Peace Pagoda" />
+        <div class="carousel-caption text-center">
           <h5>Spiritual Journeys</h5>
+          <p class="d-none d-md-block">Visit sacred temples and meditation centers</p>
+          <a href="/activities" class="btn btn-primary mt-3">Explore Activities</a>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="images/pokhara.jpg" class="d-block w-100" alt="Pokhara" />
-        <div class="carousel-caption d-none d-md-block">
+        <img src="images/pokhara.jpg" class="d-block w-100" alt="Pokhara Lakeside" />
+        <div class="carousel-caption text-center">
           <h5>Discover Pokhara</h5>
+          <p class="d-none d-md-block">The gateway to the Himalayas and Nepal's adventure capital</p>
+          <a href="#about" class="btn btn-primary mt-3">Learn More</a>
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel"
             data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel"
             data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
@@ -93,38 +306,228 @@
   </div>
 
   <!-- About Section -->
-  <section class="about my-5">
-    <div class="container text-center">
-      <h1>Pokhara</h1>
-      <p class="p-2">
-        Pokhara’s tranquil beauty has been the subject of inspiration for many travel writers. Its pristine air,
-        spectacular backdrop of snowy peaks, blue lakes, and surrounding greenery make it ‘the jewel in the Himalaya’,
-        a place of remarkable natural disposition. With the magnificent Annapurna range forming the backdrop and the
-        serenity of the Cluster of 9 Lakes with three major ones - Phewa, Rupa, and Begnas – Pokhara is a great
-        destination for a weekend getaway as well as a long relaxing holiday.
-      </p>
-    </div>
-  </section>
-
-  <!-- Sight Seeing Section -->
-  <section class="sightseeing my-5">
-    <div class="container text-center">
-      <h1 class="text-dark">Sight Seeing</h1>
-      <div class="row">
-        <div class="col-sm-4">
-          <img src="images/temple.jpg" alt="Temple" class="img-fluid" />
+  <section id="about" class="about my-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h2 class="section-title text-center text-lg-start">Welcome to Pokhara</h2>
+          <p class="lead">
+            Nepal's premier tourism destination nestled in the lap of the Himalayas
+          </p>
+          <p>
+            Pokhara's tranquil beauty has been the subject of inspiration for many travel writers. Its pristine air,
+            spectacular backdrop of snowy peaks, blue lakes, and surrounding greenery make it 'the jewel in the Himalaya',
+            a place of remarkable natural disposition. With the magnificent Annapurna range forming the backdrop and the
+            serenity of the Cluster of 9 Lakes with three major ones - Phewa, Rupa, and Begnas – Pokhara is a great
+            destination for a weekend getaway as well as a long relaxing holiday.
+          </p>
+          <p>
+            The city offers a perfect mix of adventure and leisure activities, from paragliding and zip-lining to 
+            boating and spa retreats. Pokhara serves as the gateway to the Annapurna Circuit and other famous trekking 
+            routes in the region.
+          </p>
+          <a href="/activities" class="btn btn-primary">Explore Activities</a>
         </div>
-        <div class="col-sm-4">
-          <img src="images/temple1.jpg" alt="Temple 1" class="img-fluid" />
-        </div>
-        <div class="col-sm-4">
-          <img src="images/white.jpg" alt="White Temple" class="img-fluid" />
+        <div class="col-lg-6 mt-4 mt-lg-0">
+          <div class="ratio ratio-16x9">
+            <img src="images/pokhara1.jpg"  alt="Pokhara " />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Features Section -->
+  <section class="features py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title text-center">Why Visit Pokhara?</h2>
+      <p class="text-center mb-5">Discover what makes Pokhara a must-visit destination in Nepal</p>
+      
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 text-center p-4">
+            <div class="feature-icon">
+              <i class="fas fa-mountain"></i>
+            </div>
+            <h3>Himalayan Views</h3>
+            <p>
+              Witness breathtaking views of the Annapurna range, including the famous Machhapuchhre (Fishtail) mountain
+            </p>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100 text-center p-4">
+            <div class="feature-icon">
+              <i class="fas fa-water"></i>
+            </div>
+            <h3>Pristine Lakes</h3>
+            <p>
+              Enjoy the serene beauty of Phewa Lake, Begnas Lake, and Rupa Lake with boating and lakeside cafes
+            </p>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100 text-center p-4">
+            <div class="feature-icon">
+              <i class="fas fa-hiking"></i>
+            </div>
+            <h3>Adventure Sports</h3>
+            <p>
+              Experience paragliding, zip-lining, bungee jumping, and trekking in the adventure capital of Nepal
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sightseeing Section -->
+  <section class="sightseeing py-5">
+    <div class="container">
+      <h2 class="section-title text-center">Popular Attractions</h2>
+      <p class="text-center mb-5">Explore Pokhara's most iconic sights and landmarks</p>
+      
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="images/temple.jpg" class="card-img-top" alt="Bindhyabasini Temple">
+            <div class="card-body">
+              <h5 class="card-title">Bindhyabasini Temple</h5>
+              <p class="card-text">
+                One of the oldest and most sacred temples in Pokhara, dedicated to Goddess Bhagwati
+              </p>
+              <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card">
+            <img src="images/temple1.jpg" class="card-img-top" alt="World Peace Pagoda">
+            <div class="card-body">
+              <h5 class="card-title">World Peace Pagoda</h5>
+              <p class="card-text">
+                A Buddhist stupa offering panoramic views of Pokhara and the Annapurna range
+              </p>
+              <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card">
+            <img src="images/white.jpg" class="card-img-top" alt="Tal Barahi Temple">
+            <div class="card-body">
+              <h5 class="card-title">Tal Barahi Temple</h5>
+              <p class="card-text">
+                A two-story pagoda located on an island in Phewa Lake, accessible only by boat
+              </p>
+              <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">View More Attractions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h4 class="footer-title">Explore Nest</h4>
+          <p>
+            Promoting the natural beauty and cultural heritage of Pokhara, Nepal's premier tourism destination.
+          </p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-4">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="/">Home</a></li>
+            <li class="mb-2"><a href="/">About Pokhara</a></li>
+            <li class="mb-2"><a href="/activities">Activities</a></li>
+            <li class="mb-2"><a href="/trek">Trek Routes</a></li>
+            <li class="mb-2"><a href="/">Gallery</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 col-md-4">
+          <!-- <h4 class="footer-title"></h4> -->
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="/visa"></a></li>
+            <li class="mb-2"><a href="/best-time"></a></li>
+            <li class="mb-2"><a href="/transportation"></a></li>
+            <li class="mb-2"><a href="/accommodation"></a></li>
+            <li class="mb-2"><a href="/faq"></a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 col-md-4">
+          <h4 class="footer-title">Contact Us</h4>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Lakeside, Pokhara, Nepal</li>
+            <li class="mb-2"><i class="fas fa-phone me-2"></i> +977 00000000</li>
+            <li class="mb-2"><i class="fas fa-envelope me-2"></i> infoeExplorenest.com</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5 pt-4 border-top">
+        <p class="mb-0">
+          &copy; <script>document.write(new Date().getFullYear())</script> Explore Nest All rights reserved.
+          <a href="/privacy" class="ms-2">Privacy Policy</a> | 
+          <a href="/terms" class="ms-2">Terms of Service</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script>
+    // Back to top button
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('active');
+      } else {
+        backToTopButton.classList.remove('active');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
