@@ -1,54 +1,28 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const itinerarySchema = new mongoose.Schema(
-  {
-    day: {
-      type: Number,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    description: String,
-  },
-  { _id: false }
-);
-
-const trekSchema = mongoose.Schema(
-  {
-    trackName: {
-      type: String,
-      required: true,
-    },
-    location: {
-      type: String,
-      required: true,
-    },
-    difficulty: {
-      type: String,
-      enum: ["Easy", "Moderate", "Hard"],
-      default: "Moderate",
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-    duration: {
-      type: String,
-      required: true,
-    },
-    images: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
-    itinerary: [itinerarySchema]
+const BookSchema = mongoose.Schema(
+    {
+        Destination: {
+            type: String,
+            required: [true, "Please enter the name of location"],
+        },
+       Location: {
+            type: String,
+            required: [true, "Please enter the location"],
+        },
+        description: {
+            type: String,
+            required: [true, "Please enter the location description"],
+        },
+        Days: {
+            type: String,
+            required: [true, "Please enter the day plan for whole trip"],
+        },
   },
   {
     timestamps: true,
   }
-);
-const Trek = mongoose.model("Trek", trekSchema);
-module.exports = Trek;
+)
+
+const Book = mongoose.model("Book", BookSchema)
+module.exports = Book

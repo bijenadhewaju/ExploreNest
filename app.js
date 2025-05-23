@@ -7,18 +7,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 
-// console.log('MONGO_URI is:', process.env.MONGO_URI); 
+const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index.js');
+var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var dashboardRouter = require('./routes/user/dashboard.js');
+var adminRouter = require("./routes/admin.js");
 
+mongoose.connect('mongodb+srv://bhumikaojha01:BHUMIKA.MONGODB@cluster0.yzxirzy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+.then(()=> console.log("Connected"))
+.catch((err)=> console.error("Error connecting",err))
 var app = express();
-
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log('MongoDB connected'))
-.catch((err) => console.error('MongoDB connection error:', err));
 
 
 // view engine setup
@@ -35,7 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/user/dashboard', dashboardRouter);
+app.use('/admin',adminRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
