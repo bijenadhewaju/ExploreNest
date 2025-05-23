@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Dashboard</title>
+</head>
+<body>
+  <h1>Dashboard</h1>
+
+  <h2>Wishlist Treks</h2>
+  <ul>
+    <% wishlist.forEach(item => { %>
+      <li><%= item.trek.name %></li>
+    <% }) %>
+  </ul>
+
+  <h2>Completed Treks</h2>
+  <ul>
+    <% completed.forEach(item => { %>
+      <li><%= item.trek.name %></li>
+    <% }) %>
+  </ul>
+</body>
+</html>
